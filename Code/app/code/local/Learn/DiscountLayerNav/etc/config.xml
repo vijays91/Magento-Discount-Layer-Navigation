@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Learn_DiscountLayerNav>
+            <version>1.0.0</version>
+        </Learn_DiscountLayerNav>
+    </modules>
+    <global>
+        <events>
+            <catalog_product_save_before>
+                <observers>
+                    <discount_update_observer>
+                        <type>singleton</type>
+                        <class>Learn_DiscountLayerNav_Model_Observer</class>
+                        <method>updateCustomAttibute</method>
+                    </discount_update_observer>
+                </observers>
+            </catalog_product_save_before>
+        </events>
+		
+        <models>
+            <discountlayernav>
+                <class>Learn_DiscountLayerNav_Model</class>
+            </discountlayernav>            
+            <catalog>
+                <rewrite>
+                    <layer_filter_decimal>Learn_DiscountLayerNav_Model_Layer_Filter_Decimal</layer_filter_decimal>
+                </rewrite>
+            </catalog>
+        </models>
+        <resources>
+            <discountlayernav_setup>
+                <setup>
+                    <module>Learn_DiscountLayerNav</module>
+                    <class>Mage_Catalog_Model_Resource_Setup</class>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </discountlayernav_setup>
+        </resources>
+    </global>
+	
+    <adminhtml>
+        <layout>
+            <updates>
+                <discountlayernav>
+                    <file>learn/discountlayernav.xml</file>
+                </discountlayernav>
+            </updates>
+        </layout>
+    </adminhtml>
+</config>
